@@ -1,13 +1,13 @@
 from .searchAround import findAround
 
-def findAreas(matriz):
+def findAreas(matrix):
   areas = []
 
-  for i in range(len(matriz)):
-    for j in range(len(matriz[i])):
-      if matriz[i][j] < 0:
-        matriz[i][j] = 0
-        findedAreas = findAround(matriz, [i, j])
+  for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+      if matrix[i][j] < 0:
+        matrix[i][j] = 0
+        findedAreas = findAround(matrix, [i, j])
         areas.append(findedAreas)
         
   return areas

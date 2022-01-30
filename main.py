@@ -13,15 +13,15 @@ def main():
 
   while not quit:
     clear()
-    option = int(input("What do you want to do? \n1. Generate a map 1000x1000 \n2. Generate a map nxn \n3. Try with the example image \n4. Quit \n"))
+    option = input("What do you want to do? \n1. Generate a map 1000x1000 \n2. Generate a map nxn \n3. Try with the example image \n4. Quit \n")
     
-    if option == 1:
+    if option == '1':
       newMap = generate()
       isGenerated = True
 
       while isGenerated:
-        option = int(input("What do you want to do? \n1. Find areas (Can generate more of 30000 results!) \n2. Quit \n"))
-        if option == 1:
+        option = input("What do you want to do with the map? \n1. Find areas (Can generate more of 30000 results!) \n2. Quit \n")
+        if option == '1':
           areas = findAreas(newMap)
           print("Areas: ")
           for i in range(len(areas)):
@@ -32,19 +32,23 @@ def main():
           isGenerated = False
           break
 
-        elif option == 2:
+        elif option == '2':
           isGenerated = False
           break
 
-    elif option == 2:
-      size = int(input("Enter the size (square) of the map: "))
-      
+    elif option == '2':
+      try: 
+        size = int(input("Enter the size (square) of the map: "))
+      except ValueError:
+        print("Invalid size!")
+        input("Press enter to continue...")
+        continue
       newMap = generate(size)
 
       isGenerated = True
       while isGenerated:
-        option = int(input("What do you want to do? \n1. Find areas \n2. Quit \n"))
-        if option == 1:
+        option = input("What do you want to do with the map? \n1. Find areas \n2. Quit \n")
+        if option == '1':
           areas = findAreas(newMap)
           print("Areas: ")
           for i in range(len(areas)):
@@ -55,11 +59,11 @@ def main():
           isGenerated = False
           break
 
-        elif option == 2:
+        elif option == '2':
           isGenerated = False
           break
     
-    elif option == 3:
+    elif option == '3':
       newMap = [
         [ 2,  1,  3,  5,  8],
         [ 0, -1,  0,  2,  5],
@@ -74,11 +78,12 @@ def main():
 
       input("Press enter to continue...")
 
-    elif option == 4:
+    elif option == '4':
       quit = True
 
     else:
       print("Invalid option")
+      input("Press enter to continue...")
 
 if __name__ == "__main__":
   main()
