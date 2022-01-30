@@ -1,12 +1,12 @@
-def findAround(matriz, position):
+def findAround(matrix, position):
   waterAreas = 1
 
   try: # Right
-    if matriz[position[0]][position[1] + 1] < 0:
+    if matrix[position[0]][position[1] + 1] < 0:
       
-      matriz[position[0]][position[1] + 1] = 0
+      matrix[position[0]][position[1] + 1] = 0
 
-      right = findAround(matriz, [ position[0], position[1] + 1 ])
+      right = findAround(matrix, [ position[0], position[1] + 1 ])
 
       waterAreas += right
       
@@ -15,11 +15,11 @@ def findAround(matriz, position):
   except Exception as e: print(e)
 
   try:  # Down 
-    if matriz[position[0] + 1][position[1]] < 0:
+    if matrix[position[0] + 1][position[1]] < 0:
 
-      matriz[position[0] + 1][position[1]] = 0
+      matrix[position[0] + 1][position[1]] = 0
 
-      down = findAround(matriz, [ position[0] + 1, position[1]])
+      down = findAround(matrix, [ position[0] + 1, position[1]])
 
       waterAreas += down
 
@@ -28,11 +28,11 @@ def findAround(matriz, position):
   except Exception as e: print(e)
 
   try: # Left
-    if matriz[position[0]][position[1] - 1] < 0:
+    if matrix[position[0]][position[1] - 1] < 0:
       
-      matriz[position[0]][position[1] - 1] = 0
+      matrix[position[0]][position[1] - 1] = 0
 
-      left = findAround(matriz, [ position[0], position[1] - 1 ])
+      left = findAround(matrix, [ position[0], position[1] - 1 ])
   
       waterAreas += left
   except IndexError:
@@ -40,10 +40,10 @@ def findAround(matriz, position):
   except Exception as e: print(e)
   
   try: # Up
-    if matriz[position[0] - 1][position[1]] < 0:
+    if matrix[position[0] - 1][position[1]] < 0:
       
-      matriz[position[0] - 1][position[1]] = 0
-      up = findAround(matriz, [position[0] - 1, position[1]])
+      matrix[position[0] - 1][position[1]] = 0
+      up = findAround(matrix, [position[0] - 1, position[1]])
       waterAreas += up
   except IndexError:
     pass
