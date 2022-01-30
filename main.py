@@ -1,4 +1,4 @@
-from utils import findAreas, generate
+from utils import findAreas, generate, printMap
 import os
 
 def clear():
@@ -20,25 +20,28 @@ def main():
       isGenerated = True
 
       while isGenerated:
-        option = input("What do you want to do with the map? \n1. Find areas (Can generate more of 30000 results!) \n2. Quit \n")
+        option = input("What do you want to do with the map? \n1. Find areas (Can generate more of 30000 results!) \n2. Print map \n3. Quit \n")
         if option == '1':
           areas = findAreas(newMap)
           print("Areas: ")
           for i in range(len(areas)):
             print(f"\t{i + 1}. {areas[i]} mt2")
 
-          input("Press enter to continue...")
-
-          isGenerated = False
-          break
+          input("Press enter to continue...")  
 
         elif option == '2':
+          printMap(newMap)
+          input("Press enter to continue...")
+
+        elif option == '3':
           isGenerated = False
           break
 
     elif option == '2':
       try: 
-        size = int(input("Enter the size (square) of the map: "))
+        size = int(input("Enter the size (greater than one) of the map: "))
+        if size == 0 or size == 1:
+          raise ValueError
       except ValueError:
         print("Invalid size!")
         input("Press enter to continue...")
@@ -47,7 +50,7 @@ def main():
 
       isGenerated = True
       while isGenerated:
-        option = input("What do you want to do with the map? \n1. Find areas \n2. Quit \n")
+        option = input("What do you want to do with the map? \n1. Find areas \n2. Print map \n3. Quit \n")
         if option == '1':
           areas = findAreas(newMap)
           print("Areas: ")
@@ -60,6 +63,10 @@ def main():
           break
 
         elif option == '2':
+          printMap(newMap)
+          input("Press enter to continue...")
+
+        elif option == '3':
           isGenerated = False
           break
     
@@ -71,6 +78,7 @@ def main():
         [ 1, -2,  2, -1, -2]
       ]
 
+      printMap(newMap)
       areas = findAreas(newMap)
       print("Areas: ")
       for i in range(len(areas)):
